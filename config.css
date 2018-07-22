@@ -1,0 +1,21 @@
+/* Layout */
+.account-list {
+  position: absolute;
+  left: 0;
+  width: 100;
+}
+.source-list {
+  position: absolute;
+  left: 100;
+  width: 100;
+}
+.workspace {
+  position: absolute;
+  left: 200;
+  right: 0;
+}
+
+/* Style */
+.selection-column {
+
+}
