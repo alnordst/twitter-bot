@@ -1,0 +1,29 @@
+mixin nav(breadcrumbs)
+  nav
+    ol.breadcrumb
+      each crumb, index in breadcrumbs
+        if index < breadcrumbs.length - 1
+          li.breadcrumb-item
+            a(href='/' + breadcrumbs.slice(1, index + 1).join('/').toLowerCase()) #{crumb}
+        else
+          li.breadcrumb-item.active #{crumb}
+
+mixin shell(breadcrumbs)
+  doctype.html
+  html
+    head
+      meta(charset='utf-8' name='viewport' content='width=device-width, initial-scale=1, shrink-to-fit=no')
+      title twitter bot config
+      style
+        include /public/lib/bootstrap.css
+      style
+        include /public/style/general.css
+    body
+      .container
+        h1.display-4 twitter bot config
+        +nav(breadcrumbs)
+        block
+      script
+        include /public/lib/jquery-3.3.1.js
+      script
+        include /public/lib/bootstrap.js

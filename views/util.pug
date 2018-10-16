@@ -1,0 +1,16 @@
+mixin button-radio(enabled)
+  .btn-group.btn-group-toggle.d-block(data-toggle='buttons')
+    if enabled
+      label.btn.btn-lg.btn-outline-success.active
+        input(type='radio' checked)
+        | On
+      label.btn.btn-lg.btn-outline-danger
+        input(type='radio')
+        | Off
+    else
+      label.btn.btn-lg.btn-outline-success
+        input(type='radio')
+        | On
+      label.btn.btn-lg.btn-outline-danger.active
+        input(type='radio' checked)
+        | Off

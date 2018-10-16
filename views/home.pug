@@ -1,0 +1,49 @@
+mixin module(title, description, href)
+  .card
+    .card-body
+      h5.card-title #{title}
+      p.card-text #{description}
+      a.btn.btn-primary.btn-lg(href=href) Configure
+
+include shell.pug
+include util.pug
++shell(breadcrumbs)
+  section
+    h2 Options
+    form
+      .form-group
+        label Enabled
+        +button-radio(data.options.enabled)
+      .form-group
+        label(for='frequency') Frequency
+        input#frequency.form-control.form-control-lg(type='text', value=data.options.frequency)
+        small.form-text.text-muted Cron schedule expression string
+      button.btn.btn-primary.btn-lg(type='submit') Save Options
+  section
+    h2 Account
+    form
+      .form-group
+        label(for='consumer-key') Consumer Key
+        input#consumer-key.form-control.form-control-lg(type='password', value=data.account.consumerKey)
+      .form-group
+        label(for='consumer-secret') Consumer Secret
+        input#consumer-secret.form-control.form-control-lg(type='password', value=data.account.consumerSecret)
+      .form-group
+        label(for='access-token') Access Token
+        input#access-token.form-control.form-control-lg(type='password', value=data.account.accessToken)
+      .form-group
+        label(for='access-token-secret') Access Token Secret
+        input#access-token-secret.form-control.form-control-lg(type='password', value=data.account.accessTokenSecret)
+      .form-group.form-check
+        input#account-show.form-check-input(type='checkbox')
+        label.form-check-label(for='account-show') Show All
+      button.btn.btn-primary.btn-lg(type='submit') Save Keys
+  section
+    h2 Modules
+    +module(
+      'Seek and Retweet', 
+      `Identify criteria based on tweet source, contained keywords, and
+       date/time of tweet. Retweet anything matching chosen criteria.`,
+      '/seek-and-retweet'
+    )
+    +module('Ex', 'A sample.', '#')
