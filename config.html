@@ -1,7 +1,8 @@
 <head>
   <title>twitter bot configuration page</title>
-
   <link rel="stylesheet" href="config.css" type="text/css" media="all"/>
+  <script src="jquery-3.3.1.js"></script>
+  <script src="config.js"></script>
 </head>
 
 <body>
@@ -9,18 +10,116 @@
     <h1>twitter bot configuration page</h1>
   </header>
 
-  <div class="selection-column account-list">
-    <div><input class="sel-btn top" type="button" value="Settings" id="settings-btn"/></div>
-    <div><a class="add-another" id="add-account">+add account</a></div>
-  </div>
+  <main>
+    <div class="selection-column account-list">
+      <button class="account-btn selected" id="settings-btn">
+        <label>Settings</label>
+      </button>
+      <button class="add-another" id="add-account">+add account</button>
+    </div>
 
-  <div class="selection-column source-list">
-    <div><input class="sel-btn top" type="button" value="Authentication" id="auth-btn"/></div>
-    <div><a class="add-another" id="add-source">+add source</a></div>
-  </div>
+    <div class="selection-column source-list">
+      <div id="settings-sources">
+        <button class="source-btn selected">Password</button>
+        <button class="source-btn">Interval</button>
+        <button class="source-btn">Logs</button>
+      </div>
+    </div>
 
-  <div class="workspace">
-    workpace
-  </div>
+    <div class="workspace">
+      <div id="settings-workspaces">
+        <div id="settings-password">
+          <h2>Set/view password for future access to this configuration page.</h2>
+          <input type="checkbox"/><label>Require password?<label><br/>
+          <label>Password: </label><input type="text" placeholder="12345"/><br/>
+          <br/>
+          <p>Yep, plain text. Its also stored plain text, so no illusions here.
+            This really only exists for some slight peace of mind if your bot
+            is exposed to the big bad internet. If its only accessible over LAN
+            I probably wouldn't bother with this.
+          </p>
+        </div>
+        <div id="settings-interval" hidden>
+          <h2>Set how often the bot runs.</h2>
+          <label>Every </label><input type="text" value=15 size="2"/>
+          <label> minutes.</label>
+        </div>
+        <div id="settings-logs" hidden>
+          <h2>View logged data.</h2>
+          <label>Last run: </label><input type="text" readonly/><br/>
+          <br/>
+          <label>Last log:</label><br/>
+          <textarea rows="20" cols="60" readonly></textarea>
+          <p>test</p>
+        </div>
+      </div>
+    </div>
+  </main>
 
+  <footer>
+    <input class="bottom-btn" type="button" value="Save All" id="save-btn">
+    <input class="bottom-btn" type="button" value="Reset All" id="reset-btn">
+    <label class="bottom-label"> Save manually or not at all.</label>
+  </footer>
+
+  <div id="warehouse" hidden>
+    <button class="account-btn">
+      <input type="button" class='delete-btn' value="X"/>
+      <label>Generic Account</label>
+    </button>
+    <button class="source-btn">
+      <input type="button" class='delete-btn' value="X"/>
+      <label>Generic Source</label>
+    </button>
+    <div class="source-list">
+      <button class="source-btn selected">
+        <label>Authentication</label>
+      </button>
+      <button class="add-another" id="add-source">+add source</button>
+    </div>
+    <div class="source-settings">
+      <div class="source-rename">
+        <h2>Change source handle.</h2>
+        <label>Source handle: </label><input type="text"/><br/>
+        <br/>
+      </div>
+      <h2>Add and modify search terms.</h2>
+      <button class="add-another">+add search term</button>
+    </div>
+    <div class="term">
+      <input type="button" class='delete-btn-v2' value="X"/>
+      <label>Term: </label><input type="text"/>
+      <div class="days">
+        <label>Mo</label><input type="checkbox"/>
+        <label>Tu</label><input type="checkbox"/>
+        <label>We</label><input type="checkbox"/>
+        <label>Th</label><input type="checkbox"/>
+        <label>Fr</label><input type="checkbox"/>
+        <label>Sa</label><input type="checkbox"/>
+        <label>Su</label><input type="checkbox"/>
+      </div>
+      <div class="interval-block">
+        <button class="add-another">+add interval</button>
+      </div>
+    </div>
+    <div class="interval">
+      <input type="button" class='delete-btn-v2' value="X"/>
+      <label>From:</label><input type="time"/>
+      <label>To:</label><input type="time"/>
+    </div>
+    <div class="authentication">
+      <h2>View and modify authentication keys</h2>
+      <label>Consumer key:</label><br/>
+      <input type="text" size=50/><br/><br/>
+      <label>Consumer secret:</label><br/>
+      <input type="text" size=50/><br/><br/>
+      <label>Access token:</label><br/>
+      <input type="text" size=50/><br/><br/>
+      <label>Access token secret:</label><br/>
+      <input type="text" size=50/><br/><br/>
+      <br/>
+      <button class="test-auth-btn">Verify</button>
+      <p>If successful, handle will be set in account bar.</p>
+    </div>
+  </div>
 </body>
